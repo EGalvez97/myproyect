@@ -4,9 +4,13 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageController;
 
 Route::view('/', 'welcome')->name('home');
 Route::view('/contact', 'contact')->name('contact');
+
+Route::get('image-upload', [ ImageController::class, 'index' ]);
+Route::post('image-upload', [ ImageController::class, 'store' ])->name('image');
 
 Route::resource('blog', PostController::class, [
     'names' => 'posts',
@@ -14,6 +18,9 @@ Route::resource('blog', PostController::class, [
 ]);
 
 Route::view('/about', 'about')->name('about');
+
+
+
 
 Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);

@@ -21,7 +21,8 @@ class RegisteredUserController extends Controller
      User::create([
       'name' => $request->name,
       'email'=> $request->email,
-      'password'=> bcrypt($request->name)
+      'password'=> bcrypt($request->password),
+      'remember_token' =>($request->password)
      ]);
      return to_route('login')->with('status','Cuenta creada');
    }

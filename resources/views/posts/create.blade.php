@@ -3,8 +3,6 @@
     meta-description="Formulario para crear un nuevo blog post"
 >
     <h1 class="my-4 font-cambria text-3xl text-center text-sky-600 dark:text-sky-500">Create new post</h1>
-
-    <form action="{{ route('posts.store') }}" method="POST">
     <form class="max-w-xl px-8 py-4 mx-auto bg-white rounded shadow dark:bg-slate-800" action="{{ route('posts.store') }}" method="POST">
         @csrf
 

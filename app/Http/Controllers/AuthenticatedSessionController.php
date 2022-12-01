@@ -9,29 +9,32 @@ class AuthenticatedSessionController extends Controller
 {
     public function store(Request $request)
     {
-    $credentials = $request -> validate([
-    'email' => ['required','string','email'],
-    'password' => ['required', 'string']
-    ]);
-
-
-    if ( ! Auth::attempt($credentials, $request->boolean('remember'))) {
-        throw ValidationException::withMessages([
-            'email' => __('auth.failed')
+        $credentials = $request->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
         ]);
-    }
 
-    $request->session()->regenerate();
+        if ( ! Auth::attempt($credentials, $request->boolean('remember')) ) {
+            throw ValidationException::withMessages([
+                'email' => __('auth.failed')
+            ]);
+        }
 
-    return redirect()->intended()->with('status','Session Creada');
+        $request->session()->regenerate();
+
+        return redirect()->intended()
+            ->with('status', 'You are logged in');
     }
 
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return to_route('login')->with('status','Estas fuera');
 
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return to_route('login')
+            ->with('status', 'You are logged out!');
     }
 }

@@ -13,8 +13,12 @@
             <div class="max-w-3xl px-4 py-2 space-y-4 bg-white rounded shadow dark:bg-slate-800">
                 <h2 class="text-xl text-slate-600 dark:text-slate-300 hover:underline">
                     <a href="{{ route('posts.show', $post) }}">
-                        {{ $post->title }}
+                        <p>{{$post->nombre}}</p>
+                        <div>
+                        <img src="img/{{$post->img}}" class="img-fluid" alt="">
+                        </div>
                     </a>
+                    
                 </h2>
                 <div class="flex justify-between">
                     <a class="inline-flex items-center text-xs font-semibold tracking-widest text-center uppercase transition duration-150 ease-in-out dark:text-slate-400 text-slate-500 hover:text-slate-600 dark:hover:text-slate-500 focus:outline-none focus:border-slate-200" href="{{ route('posts.edit', $post) }}">Edit</a>

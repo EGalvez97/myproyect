@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Http\Requests\SavePostRequest;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -26,15 +28,30 @@ class PostController extends Controller
 
     public function create()
     {
+
         return view('posts.create', ['post' => new Post]);
     }
 
     public function store(SavePostRequest $request)
     {
-        Post::create($request->validated());
+        /*if ($request->hasfile('file')) {
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = time() . '.' . $extension;
+            $file->move('public/img/', $filename);
+        } */
+
+        $file = $request->file('img');
+        echo $path = Storage::putFile('img', $request->file('img'));
 
         return to_route('posts.index')->with('status', 'Post created!');
     }
+
+   /* public function storeimage(Request $request)
+    {
+        $file = $request->file('image');
+        echo $path = Storage::putFile('images', $request->file('image'));
+    }*/
 
     public function edit(Post $post)
     {
