@@ -3,18 +3,24 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ImageController;
 
 Route::view('/', 'welcome')->name('home');
 Route::view('/contact', 'contact')->name('contact');
 
-Route::get('image-upload', [ ImageController::class, 'index' ]);
-Route::post('image-upload', [ ImageController::class, 'store' ])->name('image');
+
+
+
 
 Route::resource('blog', PostController::class, [
     'names' => 'posts',
     'parameters' => ['blog' => 'post']
+]);
+
+Route::resource('producto',ProductoController::class,[
+    'names' => 'productos',
+    'parameters' => ['producto'=>'productos']
 ]);
 
 Route::view('/about', 'about')->name('about');

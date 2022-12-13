@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Http\Requests\SavePostRequest;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -40,9 +39,9 @@ class PostController extends Controller
             $filename = time() . '.' . $extension;
             $file->move('public/img/', $filename);
         } */
-
-        $file = $request->file('img');
-        echo $path = Storage::putFile('img', $request->file('img'));
+        
+        $file = $request->file('imagen');
+        echo $path = Storage::putFile('imagen', $file);
 
         return to_route('posts.index')->with('status', 'Post created!');
     }

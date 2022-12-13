@@ -89,6 +89,8 @@
                             <a href="{{ route('contact') }}" class="px-3 py-2 text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white {{ request()->routeIs('contact') ? 'text-sky-600 dark:text-white' : 'text-slate-400' }}">
                                 Contact
                             </a>
+                            
+                            
                             <a href="wishlist.html" class="block text-center text-white hover:text-primary transition relative">
                                 <span class="absolute -right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs"></span>
                                 <div class="text-2xl">

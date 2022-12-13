@@ -13,7 +13,7 @@
             <div class="max-w-3xl px-4 py-2 space-y-4 bg-white rounded shadow dark:bg-slate-800">
                 <h2 class="text-xl text-slate-600 dark:text-slate-300 hover:underline">
                     <a href="{{ route('posts.show', $post) }}">
-                        <p>{{$post->nombre_producto}}</p>
+                        <p>{{$post->nombre}}</p>
                         <div>
                         <img src="img/{{$post->img}}" class="img-fluid" alt="">
                         </div>
